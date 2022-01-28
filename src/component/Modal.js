@@ -12,9 +12,8 @@ const Modal = () => {
   return (
     <>
       <h2>Modal</h2>
-      {!opened ? (
-        <ModalButton onClick={handleOpen}>Open Modal</ModalButton>
-      ) : (
+      <ModalButton onClick={handleOpen}>Open Modal</ModalButton>
+      {opened ? (
         <ModalBackground className="ModalClose" onClick={handleClose}>
           <ModalContainer>
             <div>
@@ -26,6 +25,8 @@ const Modal = () => {
             </ModalClose>
           </ModalContainer>
         </ModalBackground>
+      ) : (
+        ""
       )}
     </>
   );
