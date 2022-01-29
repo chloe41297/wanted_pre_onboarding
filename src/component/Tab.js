@@ -14,29 +14,34 @@ const Tab = () => {
     setCurrentTab(idx);
   };
   return (
-    <>
-      <h2>Tab</h2>
-      <TabLists>
-        {TabData.map((list, idx) => (
-          <TabList
-            key={idx}
-            onClick={() => handleClick(idx)}
-            style={{ backgroundColor: currentTab === idx ? "#f9ca24" : "" }}
-          >
-            {list.title}
-          </TabList>
-        ))}
-      </TabLists>
-      <ContentLists>
-        {TabData.map((list) =>
-          list.idx === currentTab ? (
-            <ContentList key={list.idx}>{list.content}</ContentList>
-          ) : (
-            " "
-          )
-        )}
-      </ContentLists>
-    </>
+    <section className="Wrapper">
+      <h2 className="Title">Tab</h2>
+      <div className="Content">
+        <TabLists>
+          {TabData.map((list, idx) => (
+            <TabList
+              key={idx}
+              onClick={() => handleClick(idx)}
+              style={{
+                backgroundColor: currentTab === idx ? "#f9ca24" : "",
+                color: currentTab === idx ? "white" : "rgba(0,0,0,0.3)",
+              }}
+            >
+              {list.title}
+            </TabList>
+          ))}
+        </TabLists>
+        <ContentLists>
+          {TabData.map((list) =>
+            list.idx === currentTab ? (
+              <ContentList key={list.idx}>{list.content}</ContentList>
+            ) : (
+              " "
+            )
+          )}
+        </ContentLists>
+      </div>
+    </section>
   );
 };
 const TabLists = styled.ul`
@@ -53,7 +58,6 @@ const TabList = styled.li`
   line-height: 50px;
   text-align: center;
   background-color: #f6e58d;
-  color: whitesmoke;
   font-weight: 700;
   margin-bottom: 0;
 `;
@@ -71,5 +75,6 @@ const ContentList = styled.li`
   width: 600px;
   height: 200px;
   line-height: 200px;
+  text-align: center;
 `;
 export default Tab;

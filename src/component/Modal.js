@@ -5,30 +5,34 @@ const Modal = () => {
   const [opened, setOpened] = useState(false);
   const handleOpen = () => {
     setOpened(true);
+    document.body.style.overflow = "hidden";
   };
   const handleClose = (e) => {
     if (e.target.className.match("ModalClose")) setOpened(false);
+    document.body.style.overflow = "unset";
   };
   return (
-    <>
-      <h2>Modal</h2>
-      <ModalButton onClick={handleOpen}>Open Modal</ModalButton>
-      {opened ? (
-        <ModalBackground className="ModalClose" onClick={handleClose}>
-          <ModalContainer>
-            <div>
-              Hello!
-              <br /> "x"버튼이나 모달 바깥 영역을 클릭하여 창을 닫아 주세요!
-            </div>
-            <ModalClose className="ModalClose" onClick={handleClose}>
-              X
-            </ModalClose>
-          </ModalContainer>
-        </ModalBackground>
-      ) : (
-        ""
-      )}
-    </>
+    <section className="Wrapper">
+      <h2 className="Title">Modal</h2>
+      <div className="Content">
+        <ModalButton onClick={handleOpen}>Open Modal</ModalButton>
+        {opened ? (
+          <ModalBackground className="ModalClose" onClick={handleClose}>
+            <ModalContainer>
+              <div>
+                Hello!
+                <br /> "x"버튼이나 모달 바깥 영역을 클릭하여 창을 닫아 주세요!
+              </div>
+              <ModalClose className="ModalClose" onClick={handleClose}>
+                X
+              </ModalClose>
+            </ModalContainer>
+          </ModalBackground>
+        ) : (
+          ""
+        )}
+      </div>
+    </section>
   );
 };
 const ModalButton = styled.button`
@@ -42,11 +46,11 @@ const ModalButton = styled.button`
 `;
 const ModalBackground = styled.div`
   background-color: rgba(0, 0, 0, 0.4);
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;

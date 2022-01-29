@@ -7,20 +7,23 @@ const Toggle = () => {
     setChecked(!checked);
   };
   return (
-    <>
-      <h2>Toggle</h2>
-      <ToggleContainer>
-        <ToggleInput
-          type="checkbox"
-          checked={checked}
-          onChange={handleChange}
-        ></ToggleInput>
-        <ToggleBackground></ToggleBackground>
-      </ToggleContainer>
-      <div>{checked ? "Toggle Switch ON" : "Toggle Switch OFF"}</div>
-    </>
+    <section className="Wrapper">
+      <h2 className="Title">Toggle</h2>
+      <div className="Content">
+        <ToggleContainer>
+          <ToggleInput
+            type="checkbox"
+            checked={checked}
+            onChange={handleChange}
+          ></ToggleInput>
+          <ToggleBackground></ToggleBackground>
+        </ToggleContainer>
+        <div>{checked ? "Toggle Switch ON" : "Toggle Switch OFF"}</div>
+      </div>
+    </section>
   );
 };
+
 const ToggleContainer = styled.label`
   display: inline-block;
 `;
