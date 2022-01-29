@@ -12,13 +12,16 @@ const Tag = () => {
     tags.splice(idx, 1);
     setTags([...tags]);
   };
+  const tagWidth = tags.length
+    ? document.querySelector(".tag-container").offsetWidth
+    : 0;
 
   return (
     <section className="Wrapper">
       <h2 className="Title">Tag</h2>
       <div className="Content">
         <InputBox onSubmit={handleSubmit}>
-          <TagUl>
+          <TagUl className="tag-container">
             {tags?.map((list, idx) => (
               <TagLi key={idx}>
                 <TagContent>{list}</TagContent>
@@ -30,6 +33,7 @@ const Tag = () => {
             name="tagInput"
             type="text"
             placeholder="press enter to add tag"
+            style={{ width: `calc(580px - ${tagWidth}px)` }}
           />
         </InputBox>
       </div>
@@ -53,6 +57,7 @@ const Input = styled.input`
   height: 48px;
   :focus {
     outline: none;
+    background: none;
   }
 `;
 
@@ -71,7 +76,7 @@ const TagLi = styled.li`
   background-color: #6ab04c;
   padding: 4px;
   border-radius: 5px;
-  margin: 0px 2px;
+  margin: 0px 4px 0px 0px;
 `;
 const TagContent = styled.div`
   color: white;
