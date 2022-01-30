@@ -3,6 +3,7 @@ import { useState } from "react";
 
 const Autocomplete = () => {
   const [searchResult, setSearchResult] = useState([]);
+  const [currentType, setCurrentType] = useState("");
   const data = [
     "apple",
     "Alaska",
@@ -36,23 +37,36 @@ const Autocomplete = () => {
       .filter((item) => matchName(item, e.target.value))
       .sort((a, b) => a.length - b.length);
     setSearchResult(result);
+    setCurrentType(e.target.value);
   };
 
-  const handleClick = (e) => {
+  const handleDelete = (e) => {
     e.preventDefault();
-    document.querySelector(".searchInput").value = "";
+    setCurrentType("");
+  };
+  const handleComplete = (list) => {
+    setCurrentType(list);
+    setSearchResult([]);
   };
   return (
     <section className="Wrapper">
       <h2 className="Title">Auto Complete</h2>
       <div className="Content">
         <Form>
-          <Input className="searchInput" onChange={handleChange}></Input>
-          <DeletBtn onClick={handleClick}>x</DeletBtn>
+          <Input
+            className="searchInput"
+            onChange={handleChange}
+            value={currentType}
+          ></Input>
+          <DeletBtn onClick={handleDelete}>x</DeletBtn>
         </Form>
-        {searchResult?.map((list, idx) => (
-          <div key={idx}>{list}</div>
-        ))}
+        <Results>
+          {searchResult?.map((list, idx) => (
+            <Result key={idx} onClick={() => handleComplete(list)}>
+              {list}
+            </Result>
+          ))}
+        </Results>
       </div>
     </section>
   );
@@ -78,5 +92,21 @@ const DeletBtn = styled.button`
   border: none;
   font-size: 20px;
   background: none;
+`;
+const Results = styled.ul`
+  list-style: none;
+  box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.1);
+  margin: 0;
+  padding: 0;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+`;
+const Result = styled.li`
+  text-align: start;
+  width: 580px;
+  padding: 5px 0px 5px 20px;
+  :hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
 `;
 export default Autocomplete;
