@@ -43,6 +43,7 @@ const Autocomplete = () => {
   const handleDelete = (e) => {
     e.preventDefault();
     setCurrentType("");
+    setSearchResult([]);
   };
   const handleComplete = (list) => {
     setCurrentType(list);

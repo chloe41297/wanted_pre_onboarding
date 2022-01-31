@@ -77,6 +77,8 @@ const TagLi = styled.li`
   padding: 4px;
   border-radius: 5px;
   margin: 0px 4px 0px 0px;
+  white-space: nowrap;
+  /* text-overflow: "-"; */
 `;
 const TagContent = styled.div`
   color: white;
