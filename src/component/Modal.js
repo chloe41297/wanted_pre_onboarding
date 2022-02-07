@@ -54,6 +54,7 @@ const ModalBackground = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 30;
 `;
 const ModalContainer = styled.div`
   width: 400px;
