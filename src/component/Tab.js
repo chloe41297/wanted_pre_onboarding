@@ -60,6 +60,7 @@ const TabList = styled.li`
   background-color: #f6e58d;
   font-weight: 700;
   margin-bottom: 0;
+  transition: all 0.3s ease-in-out;
 `;
 const ContentLists = styled.ul`
   text-decoration: none;
