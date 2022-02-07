@@ -3,10 +3,13 @@ import { useState } from "react";
 
 const Tag = () => {
   const [tags, setTags] = useState([]);
+  const maxLength = 3;
   const handleSubmit = (e) => {
     e.preventDefault();
-    setTags([...tags, e.target.tagInput.value]);
-    e.target.tagInput.value = "";
+    if (tags.length < maxLength) {
+      setTags([...tags, e.target.tagInput.value]);
+      e.target.tagInput.value = "";
+    }
   };
   const handleClick = (idx) => {
     tags.splice(idx, 1);
@@ -34,7 +37,13 @@ const Tag = () => {
             type="text"
             placeholder="press enter to add tag"
             style={{ width: `calc(580px - ${tagWidth}px)` }}
+            disabled={tags.length >= 3 ? true : false}
           />
+          {tags.length === 3 ? (
+            <AlertTag>3개까지 입력이 가능합니다.</AlertTag>
+          ) : (
+            ""
+          )}
         </InputBox>
       </div>
     </section>
@@ -50,6 +59,7 @@ const InputBox = styled.form`
   justify-content: flex-start;
   align-items: center;
   padding: 0;
+  position: relative;
 `;
 const Input = styled.input`
   border: none;
@@ -93,5 +103,23 @@ const TagDelte = styled.div`
   border-radius: 50%;
   background: white;
   margin-left: 4px;
+`;
+const AlertTag = styled.div`
+  background-color: rgba(0, 0, 0, 0.2);
+  position: absolute;
+  top: 60px;
+  left: 20px;
+  padding: 2px;
+  border-radius: 5px;
+  :after {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: 0%;
+    margin-left: 10px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent rgba(0, 0, 0, 0.2) transparent;
+  }
 `;
 export default Tag;
