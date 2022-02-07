@@ -10,9 +10,10 @@ const Toggle = () => {
     <section className="Wrapper">
       <h2 className="Title">Toggle</h2>
       <div className="Content">
-        <ToggleContainer>
+        <ToggleContainer for="toggle">
           <ToggleInput
             type="checkbox"
+            id="toggle"
             checked={checked}
             onChange={handleChange}
           ></ToggleInput>
