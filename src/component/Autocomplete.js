@@ -52,7 +52,7 @@ const Autocomplete = () => {
   return (
     <section className="Wrapper">
       <h2 className="Title">Auto Complete</h2>
-      <div className="Content">
+      <div className="Content" style={{ position: "relative" }}>
         <Form>
           <Input
             className="searchInput"
@@ -95,6 +95,8 @@ const DeletBtn = styled.button`
   background: none;
 `;
 const Results = styled.ul`
+  position: absolute;
+  top: 134px;
   list-style: none;
   box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.1);
   margin: 0;
@@ -106,8 +108,9 @@ const Result = styled.li`
   text-align: start;
   width: 580px;
   padding: 5px 0px 5px 20px;
+  background-color: white;
   :hover {
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: whitesmoke;
   }
 `;
 export default Autocomplete;
